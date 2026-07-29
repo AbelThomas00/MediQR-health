@@ -36,11 +36,11 @@ const Header = () => {
   }, []);
 
   const getNavLinkClass = ({ isActive }) => {
-    const base = "text-body-md flex flex-col items-center group relative rounded-lg transition-colors px-3 py-1";
+    const base = "text-body-md relative group rounded-lg transition-all duration-300 px-3 py-1.5 font-bold flex items-center";
     if (isActive) {
-      return `${base} text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold`;
+      return `${base} text-primary dark:text-primary-fixed-dim after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-3/4 after:h-[3px] after:bg-primary after:rounded-full after:transition-all`;
     }
-    return `${base} text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/10 dark:hover:bg-primary-fixed-dim/10`;
+    return `${base} text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/5 dark:hover:bg-primary-fixed-dim/10 after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[3px] after:bg-primary/50 after:rounded-full after:transition-all after:duration-300 hover:after:w-1/2`;
   };
 
   const handleSignOut = () => {
@@ -71,7 +71,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 border-b border-outline-variant/20 shadow-sm flex justify-between items-center w-full px-container-padding-desktop max-w-full sticky z-50 py-3 transition-colors duration-200" id="top-nav">
+    <header className="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl text-primary dark:text-primary-fixed-dim docked full-width top-0 border-b border-white/20 dark:border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.05)] flex justify-between items-center w-full px-container-padding-desktop max-w-full sticky z-50 py-3 transition-all duration-300" id="top-nav">
       {/* Logo & Brand */}
       <div className="flex items-center gap-4">
         <img alt="MediQR Health Logo" className="h-10 w-10 object-contain rounded-full bg-white p-1 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYG1mAR19StrCcofmMz0MEOcW8UJ85pcVPx4wtyIgiIKAEbT6CQ0kZGecpmtuuF8P5ikmjugUadXESsbF2J1biphDd9UP4pLhsw7YRTbWtMs6ipyIVfRSbrb7JSnuIUoohzg1UOJFMtdhvv8ksVl7DNzJE5rYx0_cnFC-1KOk7q3xKyrUJSJgNdVLFh3Z5D8fN0cJdn1zp3FYjj4rDbDRdyi1D-hFJzC2XKbYLeLG_rkTai17E_nc9JA"/>

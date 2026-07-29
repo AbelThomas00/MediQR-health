@@ -131,7 +131,7 @@ const MediQRPassport = () => {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
         {/* Profile Info */}
         <div className="md:col-span-3 flex flex-col gap-4">
-          <div className="bg-white/40 p-4 rounded-lg border border-white/60">
+          <div className="bg-gradient-to-br from-white/60 to-white/30 dark:from-white/10 dark:to-white/5 p-5 rounded-xl border border-white/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-headline-md shrink-0">
                 {patientData.initials}
@@ -172,7 +172,7 @@ const MediQRPassport = () => {
 
         {/* QR Code Area */}
         <div className="md:col-span-2 flex flex-col items-center justify-center gap-4 w-full">
-          <div className="bg-white p-3 rounded-xl shadow-sm border border-outline-variant/30 relative flex items-center justify-center">
+          <div className="bg-white p-4 rounded-2xl shadow-[0_0_40px_rgba(0,89,187,0.15)] border border-white/80 relative flex items-center justify-center group-hover:shadow-[0_0_50px_rgba(0,89,187,0.25)] transition-all duration-500">
             <QRCodeSVG 
               value={patientData.id} 
               size={128} 
