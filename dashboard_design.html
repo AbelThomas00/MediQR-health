@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediQR Unified Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#dce9ff",
+                      "on-error": "#ffffff",
+                      "surface-variant": "#d3e4fe",
+                      "on-tertiary-container": "#fffbff",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed-dim": "#adc7ff",
+                      "primary": "#0059bb",
+                      "surface-tint": "#005bc0",
+                      "on-error-container": "#93000a",
+                      "on-surface": "#0b1c30",
+                      "outline": "#717786",
+                      "on-tertiary-fixed": "#410004",
+                      "tertiary-container": "#da3437",
+                      "secondary-fixed": "#6ffbbe",
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#213145",
+                      "on-background": "#0b1c30",
+                      "surface": "#f8f9ff",
+                      "on-surface-variant": "#414754",
+                      "surface-container-highest": "#d3e4fe",
+                      "tertiary-fixed": "#ffdad7",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#adc7ff",
+                      "surface-container-low": "#eff4ff",
+                      "on-primary": "#ffffff",
+                      "on-primary-container": "#fefcff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "background": "#f8f9ff",
+                      "on-secondary-container": "#00714d",
+                      "secondary-fixed-dim": "#4edea3",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#930013",
+                      "on-secondary-fixed-variant": "#005236",
+                      "primary-container": "#0070ea",
+                      "secondary-container": "#6cf8bb",
+                      "surface-container": "#e5eeff",
+                      "tertiary": "#b61722",
+                      "tertiary-fixed-dim": "#ffb3ad",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#001a41",
+                      "surface-bright": "#f8f9ff",
+                      "secondary": "#006c49",
+                      "on-secondary-fixed": "#002113",
+                      "primary-fixed": "#d8e2ff",
+                      "outline-variant": "#c1c6d7",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed-variant": "#004493"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-padding-mobile": "16px",
+                      "gutter": "24px",
+                      "container-padding-desktop": "40px",
+                      "glass-padding": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "display-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #f8f9ff;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(211,100%,90%,1) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(211,100%,94%,1) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(211,100%,90%,1) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(211,100%,94%,1) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        
+        .glass-input {
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+        }
+        
+        .glass-input:focus {
+            border-color: #0059bb;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 89, 187, 0.2);
+        }
+
+        .timeline-line {
+            border-left: 2px dashed #c1c6d7;
+            position: absolute;
+            left: 11px;
+            top: 24px;
+            bottom: -24px;
+        }
+        .timeline-item:last-child .timeline-line {
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 border-b border-white/40 dark:border-outline/20 backdrop-blur-xl bg-white/30 dark:bg-black/20 shadow-sm flex justify-between items-center w-full px-container-padding-desktop max-w-full sticky top-0 z-50 py-3 transition-colors duration-200" id="top-nav">
+<!-- Logo & Brand -->
+<div class="flex items-center gap-4">
+<img alt="MediQR Health Logo" class="h-10 w-10 object-contain rounded-full bg-white p-1 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYG1mAR19StrCcofmMz0MEOcW8UJ85pcVPx4wtyIgiIKAEbT6CQ0kZGecpmtuuF8P5ikmjugUadXESsbF2J1biphDd9UP4pLhsw7YRTbWtMs6ipyIVfRSbrb7JSnuIUoohzg1UOJFMtdhvv8ksVl7DNzJE5rYx0_cnFC-1KOk7q3xKyrUJSJgNdVLFh3Z5D8fN0cJdn1zp3FYjj4rDbDRdyi1D-hFJzC2XKbYLeLG_rkTai17E_nc9JA"/>
+<h1 class="text-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tight hidden md:block">MediQR Health</h1>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold text-body-md flex flex-col items-center group relative hover:bg-primary/10 dark:hover:bg-primary-fixed-dim/10 rounded-lg transition-colors px-3 py-1" href="#">
+                Dashboard
+                <span class="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none scale-95 duration-150 ease-in-out"></span>
+</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary text-body-md flex flex-col items-center group relative hover:bg-primary/10 dark:hover:bg-primary-fixed-dim/10 rounded-lg transition-colors px-3 py-1" href="#">
+                MediQR Passport
+            </a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary text-body-md flex flex-col items-center group relative hover:bg-primary/10 dark:hover:bg-primary-fixed-dim/10 rounded-lg transition-colors px-3 py-1" href="#">
+                RxDecode
+            </a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary text-body-md flex flex-col items-center group relative hover:bg-primary/10 dark:hover:bg-primary-fixed-dim/10 rounded-lg transition-colors px-3 py-1" href="#">
+                Schedules
+            </a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<!-- Mode Toggle -->
+<div class="hidden md:flex items-center bg-surface-container/50 rounded-full p-1 border border-white/30 mr-2 relative" id="mode-toggle">
+<button class="px-4 py-1.5 rounded-full text-label-caps font-bold bg-primary text-white shadow-sm transition-all z-10 relative w-24 text-center mode-btn active" data-mode="patient">Patient</button>
+<button class="px-4 py-1.5 rounded-full text-label-caps font-bold text-on-surface-variant hover:text-primary transition-all z-10 relative w-24 text-center mode-btn" data-mode="pharmacist">Pharmacy</button>
+</div>
+<button class="flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-lg font-bold text-body-md hover:bg-primary/20 transition-colors mr-2 lg:hidden">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="md:hidden">Patient Mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10" id="theme-toggle" title="Dark Mode Toggle">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10" title="Notifications">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-primary/10" title="Account">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+<!-- Mobile Menu Toggle -->
+<button class="lg:hidden text-on-surface-variant hover:text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow p-container-padding-mobile md:p-gutter lg:p-container-padding-desktop max-w-7xl mx-auto w-full flex flex-col gap-gutter">
+<!-- Top Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Module 1: MediQR Passport -->
+<section class="glass-panel rounded-xl p-glass-padding flex flex-col gap-6 relative overflow-hidden group">
+<!-- Decorative background blur -->
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-primary-fixed-dim/30 rounded-full blur-3xl -z-10 group-hover:bg-primary-fixed/40 transition-colors duration-700"></div>
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">qr_code_scanner</span>
+                            MediQR Passport
+                        </h2>
+<p class="text-on-surface-variant text-body-md">Your unified digital health identity.</p>
+</div>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-caps text-label-caps border border-primary/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified_user</span> Verified
+                    </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
+<!-- Profile Info -->
+<div class="md:col-span-3 flex flex-col gap-4">
+<div class="bg-white/40 p-4 rounded-lg border border-white/60">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-headline-md shrink-0">
+                                    EJ
+                                </div>
+<div>
+<h3 class="font-bold text-body-lg text-on-surface">Elenor Jenkins</h3>
+<p class="text-on-surface-variant text-sm">DOB: 12 Oct 1985</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="glass-input p-2 rounded-md">
+<span class="text-xs text-outline block mb-0.5 font-label-caps">Blood Type</span>
+<span class="font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+                                        O-Negative
+                                    </span>
+</div>
+<div class="glass-input p-2 rounded-md">
+<span class="text-xs text-outline block mb-0.5 font-label-caps">Allergies</span>
+<span class="font-bold text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-error text-sm">warning</span>
+                                        Penicillin
+                                    </span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between bg-surface-container-highest/50 p-3 rounded-lg border border-white/50">
+<div>
+<span class="text-xs text-outline block font-label-caps">Global Access Key</span>
+<span class="font-mono font-bold text-primary tracking-widest">MED-7842-X</span>
+</div>
+<button class="text-primary hover:bg-primary/10 p-1.5 rounded-md transition-colors" title="Copy Key">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+</div>
+<!-- QR Code Area -->
+<div class="md:col-span-2 flex flex-col items-center justify-center gap-4">
+<div class="bg-white p-3 rounded-xl shadow-sm border border-outline-variant/30 relative">
+<!-- Placeholder for QR Code generation -->
+<img class="w-32 h-32 object-cover rounded-lg opacity-80 mix-blend-multiply" data-alt="A highly detailed, modern QR code design with medical cross elements integrated into the center, rendered in deep medical blue against a crisp white background, suitable for a healthcare app interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5FqXjBy1GOH8XktJ3L16vtoUArFxLyf-Pv2BloKSfh38vT5cG8vyodda8Oh1hYJ4cWYgio7SP097-fxyTXJW_RLCt4qJfjrbiOOXKm2xBhEQvn3kHyjiugYD1CNfpGtZdLPISpx-qU4w49OV71Z9Ex6DHVzM3mT4DxMH_j35rO1gon9LSXmHOw7DMq8OH8nz4ww3ehTHZrbEXPxIIAfIJXpyooMgquB4zomU9BzLbhtWLrHcO4w9I5A"/>
+<!-- Scanner animation line -->
+<div class="absolute inset-x-3 top-3 h-0.5 bg-secondary-fixed shadow-[0_0_8px_2px_rgba(111,251,190,0.5)] z-10 animate-[scan_2s_ease-in-out_infinite]"></div>
+</div>
+<button class="w-full bg-primary text-white font-body-md font-bold py-2 px-4 rounded-lg hover:bg-primary/90 transition-colors shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                            Simulated Scan
+                        </button>
+</div>
+</div>
+</section>
+<!-- Module 2: RxDecode AI Scanner -->
+<section class="glass-panel rounded-xl p-glass-padding flex flex-col gap-6 relative">
+<div class="flex justify-between items-start">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">document_scanner</span>
+                            RxDecode Engine
+                        </h2>
+<p class="text-on-surface-variant text-body-md">AI-powered prescription transcription.</p>
+</div>
+</div>
+<!-- Drag & Drop Zone -->
+<div class="border-2 border-dashed border-primary/30 bg-primary/5 rounded-xl p-6 flex flex-col items-center justify-center text-center transition-all hover:bg-primary/10 hover:border-primary/50 cursor-pointer min-h-[140px]">
+<span class="material-symbols-outlined text-4xl text-primary/60 mb-2">cloud_upload</span>
+<p class="font-bold text-body-md text-on-surface">Drag &amp; Drop prescription here</p>
+<p class="text-sm text-on-surface-variant mt-1">or click to browse files (JPEG, PNG, PDF)</p>
+</div>
+<!-- Sample Selector -->
+<div class="flex flex-col gap-2">
+<span class="text-xs text-outline font-label-caps">Test with Sample Data</span>
+<select class="glass-input w-full p-2.5 rounded-lg text-body-md text-on-surface focus:ring-primary focus:border-primary">
+<option>Amoxicillin 500mg, BD for 7 days</option>
+<option>Lisinopril 10mg, OD in morning</option>
+<option>Metformin 850mg, TDS with meals</option>
+</select>
+</div>
+<!-- Output Preview -->
+<div class="bg-surface-container-lowest/80 rounded-lg p-4 border border-outline-variant/40 mt-auto">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span class="text-xs font-bold text-secondary tracking-wide uppercase">Parsed Successfully</span>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div>
+<span class="text-[10px] text-outline font-bold uppercase tracking-wider block mb-1">Medication</span>
+<span class="font-bold text-on-surface text-sm">Amoxicillin</span>
+</div>
+<div>
+<span class="text-[10px] text-outline font-bold uppercase tracking-wider block mb-1">Dosage</span>
+<span class="font-bold text-on-surface text-sm">500mg</span>
+</div>
+<div>
+<span class="text-[10px] text-outline font-bold uppercase tracking-wider block mb-1">Frequency</span>
+<span class="font-bold text-on-surface text-sm">2x Daily (BD)</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Module 3: Perspective Engine (Bottom) -->
+<section class="glass-panel rounded-xl p-glass-padding flex flex-col gap-6 relative min-h-[300px]">
+<div class="flex justify-between items-end border-b border-outline-variant/30 pb-4">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-1 flex items-center gap-2" id="perspective-title">
+<span class="material-symbols-outlined text-primary" id="perspective-icon">calendar_month</span>
+<span id="perspective-heading">Daily Pill Schedule</span>
+</h2>
+<p class="text-on-surface-variant text-body-md" id="perspective-subheading">Your personalized medication timeline for today.</p>
+</div>
+<div class="text-sm font-bold text-primary bg-primary-container/20 px-3 py-1 rounded-full" id="perspective-badge">
+                    Patient View Active
+                </div>
+</div>
+<!-- Content Area: Swaps based on mode -->
+<div class="relative pl-4 block" id="content-patient">
+<!-- Timeline Item 1 -->
+<div class="relative pl-8 pb-8 timeline-item">
+<div class="timeline-line"></div>
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-secondary-container border-2 border-white shadow-sm flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px] text-on-secondary-container">check</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-body-lg text-on-surface flex items-center gap-2">
+                                Morning Routine
+                                <span class="text-xs font-normal text-on-surface-variant bg-surface-variant px-2 py-0.5 rounded">08:00 AM</span>
+</h4>
+<p class="text-sm text-on-surface-variant mt-1">Take with breakfast</p>
+</div>
+<span class="bg-secondary/10 text-secondary px-2 py-1 rounded text-xs font-bold">Taken</span>
+</div>
+<div class="mt-3 bg-white/50 p-3 rounded-lg border border-white flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">pill</span>
+</div>
+<div class="flex-grow">
+<span class="font-bold block text-sm">Lisinopril</span>
+<span class="text-xs text-outline">10mg • 1 tablet</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="relative pl-8 pb-8 timeline-item">
+<div class="timeline-line"></div>
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-primary border-2 border-white shadow-sm flex items-center justify-center z-10 animate-pulse">
+<span class="w-2 h-2 bg-white rounded-full"></span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-bold text-body-lg text-on-surface flex items-center gap-2">
+                                Afternoon Dose
+                                <span class="text-xs font-normal text-primary bg-primary-container/20 px-2 py-0.5 rounded">01:00 PM (Now)</span>
+</h4>
+<p class="text-sm text-on-surface-variant mt-1">Take after lunch</p>
+</div>
+<button class="bg-primary text-white px-3 py-1.5 rounded-lg text-sm font-bold shadow-sm hover:bg-primary/90 transition-colors">Mark Taken</button>
+</div>
+<div class="mt-3 bg-white border-2 border-primary/20 p-3 rounded-lg shadow-sm flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">medication</span>
+</div>
+<div class="flex-grow">
+<span class="font-bold block text-sm">Amoxicillin</span>
+<span class="text-xs text-outline">500mg • 1 capsule</span>
+</div>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="relative pl-8 timeline-item">
+<div class="timeline-line"></div>
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-variant border-2 border-white shadow-sm flex items-center justify-center z-10">
+</div>
+<div class="flex justify-between items-start opacity-60">
+<div>
+<h4 class="font-bold text-body-lg text-on-surface flex items-center gap-2">
+                                Evening Routine
+                                <span class="text-xs font-normal text-on-surface-variant bg-surface-variant px-2 py-0.5 rounded">08:00 PM</span>
+</h4>
+</div>
+<span class="text-outline text-xs font-bold uppercase tracking-wider">Upcoming</span>
+</div>
+</div>
+</div>
+<div class="hidden flex-col gap-4" id="content-pharmacist">
+<div class="bg-tertiary-container/10 border-l-4 border-tertiary p-4 rounded-r-lg mb-2">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-tertiary mt-0.5">info</span>
+<div>
+<h5 class="font-bold text-on-surface">Interaction Alert</h5>
+<p class="text-sm text-on-surface-variant mt-1">Patient allergy profile flags potential issue with prescribed Amoxicillin. Verification required.</p>
+</div>
+</div>
+</div>
+<div class="border border-outline-variant/40 rounded-lg overflow-hidden">
+<table class="w-full text-left text-sm">
+<thead class="bg-surface-container-low text-on-surface-variant">
+<tr>
+<th class="p-3 font-label-caps">Medication</th>
+<th class="p-3 font-label-caps">Instructions</th>
+<th class="p-3 font-label-caps">Stock</th>
+<th class="p-3 font-label-caps text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 bg-white/50">
+<tr>
+<td class="p-3 font-bold text-on-surface">Amoxicillin 500mg</td>
+<td class="p-3 text-on-surface-variant">21 caps (7 days)</td>
+<td class="p-3"><span class="text-secondary font-bold">In Stock</span></td>
+<td class="p-3 text-right">
+<button class="text-tertiary font-bold hover:underline">Review Override</button>
+</td>
+</tr>
+<tr>
+<td class="p-3 font-bold text-on-surface">Lisinopril 10mg</td>
+<td class="p-3 text-on-surface-variant">30 tabs (30 days)</td>
+<td class="p-3"><span class="text-secondary font-bold">In Stock</span></td>
+<td class="p-3 text-right">
+<button class="bg-primary/10 text-primary px-3 py-1 rounded font-bold hover:bg-primary/20 transition-colors">Prepare</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4 flex justify-end gap-3 border-t border-outline-variant/30 pt-4">
+<button class="px-4 py-2 text-on-surface-variant font-bold hover:bg-surface-variant rounded-lg transition-colors">Cancel</button>
+<button class="px-4 py-2 bg-primary text-white font-bold rounded-lg shadow-sm hover:bg-primary/90 transition-colors flex items-center gap-2 opacity-50 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                        Digital Sign-off
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button (TTS) -->
+<button aria-label="Speak Instructions" class="fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-primary/90 hover:scale-105 transition-all focus:outline-none focus:ring-4 focus:ring-primary/30 z-40 group">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">record_voice_over</span>
+<span class="absolute right-full mr-4 bg-inverse-surface text-inverse-on-surface px-3 py-1.5 rounded-lg text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Read Page Aloud
+        </span>
+</button>
+<style>
+        @keyframes scan {
+            0% { top: 12px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: calc(100% - 14px); opacity: 0; }
+        }
+    </style>
+<script>
+        // Simple mode toggler for demonstration
+        document.addEventListener('DOMContentLoaded', () => {
+            const btns = document.querySelectorAll('.mode-btn');
+            const patientContent = document.getElementById('content-patient');
+            const pharmContent = document.getElementById('content-pharmacist');
+            
+            const title = document.getElementById('perspective-heading');
+            const subtitle = document.getElementById('perspective-subheading');
+            const icon = document.getElementById('perspective-icon');
+            const badge = document.getElementById('perspective-badge');
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const mode = e.target.dataset.mode;
+                    
+                    // Reset buttons
+                    btns.forEach(b => {
+                        b.classList.remove('bg-primary', 'text-white', 'shadow-sm', 'active');
+                        b.classList.add('text-on-surface-variant');
+                    });
+
+                    // Set active
+                    e.target.classList.remove('text-on-surface-variant');
+                    e.target.classList.add('bg-primary', 'text-white', 'shadow-sm', 'active');
+
+                    if(mode === 'patient') {
+                        patientContent.classList.remove('hidden');
+                        patientContent.classList.add('block');
+                        pharmContent.classList.add('hidden');
+                        pharmContent.classList.remove('flex');
+                        
+                        title.textContent = 'Daily Pill Schedule';
+                        subtitle.textContent = 'Your personalized medication timeline for today.';
+                        icon.textContent = 'calendar_month';
+                        badge.textContent = 'Patient View Active';
+                        badge.className = 'text-sm font-bold text-primary bg-primary-container/20 px-3 py-1 rounded-full';
+                    } else {
+                        patientContent.classList.add('hidden');
+                        patientContent.classList.remove('block');
+                        pharmContent.classList.remove('hidden');
+                        pharmContent.classList.add('flex');
+                        
+                        title.textContent = 'Dispensing Checklist';
+                        subtitle.textContent = 'Review and verify prescriptions before sign-off.';
+                        icon.textContent = 'fact_check';
+                        badge.textContent = 'Pharmacy Mode Active';
+                        badge.className = 'text-sm font-bold text-on-secondary-container bg-secondary-container/40 border border-secondary/20 px-3 py-1 rounded-full';
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>
