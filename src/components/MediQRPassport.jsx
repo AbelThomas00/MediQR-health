@@ -159,12 +159,12 @@ const MediQRPassport = () => {
             </div>
           </div>
           
-          <div className="flex items-center justify-between bg-surface-container-highest/50 p-3 rounded-lg border border-white/50">
-            <div>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-highest/50 p-3 rounded-lg border border-white/50 w-full overflow-hidden">
+            <div className="min-w-0 flex-1">
               <span className="text-xs text-outline block font-label-caps">Global Access Key</span>
-              <span className="font-mono font-bold text-primary tracking-widest">{patientData.id}</span>
+              <span className="font-mono font-bold text-primary tracking-widest break-all sm:truncate block">{patientData.id}</span>
             </div>
-            <button className="text-primary hover:bg-primary/10 p-1.5 rounded-md transition-colors" title="Copy Key" onClick={() => navigator.clipboard.writeText(patientData.id)}>
+            <button className="text-primary hover:bg-primary/10 p-1.5 rounded-md transition-colors shrink-0 self-start sm:self-auto" title="Copy Key" onClick={() => navigator.clipboard.writeText(patientData.id)}>
               <span className="material-symbols-outlined text-sm">content_copy</span>
             </button>
           </div>
@@ -206,8 +206,8 @@ const MediQRPassport = () => {
             </div>
 
             {mode === 'pharmacist' && (
-              <form onSubmit={handleManualSubmit} className="flex flex-col gap-1 w-full mt-2">
-                <div className="flex gap-2">
+              <form onSubmit={handleManualSubmit} className="flex flex-col gap-2 w-full mt-2">
+                <div className="flex flex-col sm:flex-row gap-2 w-full">
                   <input 
                     type="text" 
                     placeholder="Enter Access Key..."
@@ -259,7 +259,7 @@ const MediQRPassport = () => {
             />
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs text-outline font-label-caps mb-1 block">Date of Birth</label>
               <input 
@@ -282,7 +282,7 @@ const MediQRPassport = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs text-outline font-label-caps mb-1 block">Blood Type</label>
               <input 

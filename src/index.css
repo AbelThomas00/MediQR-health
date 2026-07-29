@@ -71,11 +71,12 @@
   --color-surface-container: #0f1722;
   --color-surface-container-high: #151f2d;
   --color-surface-container-highest: #1a2738;
+  --color-surface-variant: #1e2b3c;
   --color-on-surface: #eaf1ff;
   --color-on-surface-variant: #aebfd6;
   --color-outline: #7787a0;
   --color-outline-variant: #344358;
-  --color-primary: #adc7ff;
+  --color-primary: #2575fc;
   --color-primary-container: #00428f;
   --color-on-primary-container: #d8e2ff;
   --color-secondary-container: #005236;
