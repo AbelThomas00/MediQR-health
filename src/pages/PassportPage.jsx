@@ -81,14 +81,14 @@ const PassportPage = () => {
               Emergency Contacts
             </h2>
             <div className="flex flex-col gap-3">
-              <div className="bg-white/40 dark:bg-white/5 p-3 rounded-lg border border-white/50 dark:border-white/10 flex justify-between items-center">
+              <div className="bg-white/40 dark:bg-white/5 p-3 rounded-lg border border-white/50 dark:border-white/10 flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-1 sm:gap-0">
                 <div>
                   <h4 className="font-bold text-sm text-on-surface">{spouseName}</h4>
                   <p className="text-xs text-on-surface-variant">Spouse</p>
                 </div>
                 <span className="font-mono text-primary font-bold text-sm">+1 (555) 123-4567</span>
               </div>
-              <div className="bg-white/40 dark:bg-white/5 p-3 rounded-lg border border-white/50 dark:border-white/10 flex justify-between items-center">
+              <div className="bg-white/40 dark:bg-white/5 p-3 rounded-lg border border-white/50 dark:border-white/10 flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-1 sm:gap-0">
                 <div>
                   <h4 className="font-bold text-sm text-on-surface">Dr. Sarah Miller</h4>
                   <p className="text-xs text-on-surface-variant">Primary Care</p>

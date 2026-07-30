@@ -42,7 +42,7 @@ const PerspectiveEngine = () => {
             {isPatient ? 'Your personalized medication timeline for today.' : 'Review and verify prescriptions before sign-off.'}
           </p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 flex-wrap w-full sm:w-auto mt-2 sm:mt-0">
           {/* Dashboard Stats */}
           {isPatient && (
             <div className="flex gap-3 text-sm bg-surface-variant/50 p-2 rounded-lg border border-outline-variant/30">
@@ -62,10 +62,10 @@ const PerspectiveEngine = () => {
           )}
 
           <div 
-            className={isPatient ? "text-sm font-bold text-primary bg-primary-container/20 px-3 py-1 rounded-full whitespace-nowrap" : "text-sm font-bold text-on-secondary-container bg-secondary-container/40 border border-secondary/20 px-3 py-1 rounded-full whitespace-nowrap"} 
+            className={isPatient ? "text-xs sm:text-sm font-bold text-primary bg-primary-container/20 px-3 py-1 rounded-full whitespace-nowrap" : "text-xs sm:text-sm font-bold text-on-secondary-container bg-secondary-container/40 border border-secondary/20 px-3 py-1 rounded-full whitespace-nowrap"} 
             id="perspective-badge"
           >
-            {isPatient ? 'Patient View Active' : 'Pharmacy Mode Active'}
+            {isPatient ? 'Patient View' : 'Pharmacy Mode'}
           </div>
         </div>
       </div>
@@ -100,15 +100,15 @@ const PerspectiveEngine = () => {
                   </div>
                 )}
 
-                <div className={`flex justify-between items-start ${isUpcoming ? 'opacity-60' : ''} transition-opacity`}>
-                  <div>
-                    <h4 className="font-bold text-body-lg text-on-surface flex items-center gap-2">
+                <div className={`flex flex-col sm:flex-row sm:justify-between items-start gap-3 sm:gap-0 ${isUpcoming ? 'opacity-60' : ''} transition-opacity`}>
+                  <div className="flex flex-col gap-1 w-full sm:w-auto">
+                    <h4 className="font-bold text-body-lg text-on-surface flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 items-start">
                       {schedule.routine}
-                      <span className={`text-xs font-normal px-2 py-0.5 rounded ${isPending ? 'text-primary bg-primary-container/20' : 'text-on-surface-variant bg-surface-variant'}`}>
+                      <span className={`text-xs font-normal px-2 py-0.5 rounded inline-block ${isPending ? 'text-primary bg-primary-container/20' : 'text-on-surface-variant bg-surface-variant'}`}>
                         {schedule.time} {isPending ? '(Now)' : ''}
                       </span>
                     </h4>
-                    {schedule.instructions && <p className="text-sm text-on-surface-variant mt-1">{schedule.instructions}</p>}
+                    {schedule.instructions && <p className="text-sm text-on-surface-variant">{schedule.instructions}</p>}
                   </div>
                   
                   {isTaken && <span className="bg-secondary/10 text-secondary px-2 py-1 rounded text-xs font-bold animate-in zoom-in">Taken</span>}
@@ -131,15 +131,15 @@ const PerspectiveEngine = () => {
                 {schedule.medications.length > 0 && (
                   <div className={`mt-3 flex flex-col gap-2 ${isUpcoming ? 'opacity-60' : ''}`}>
                     {schedule.medications.map(med => (
-                      <div key={med.id} className={`bg-white/80 ${isPending ? 'border-2 border-primary/20 shadow-sm' : 'border border-white'} p-3 rounded-lg flex items-center gap-4 transition-all hover:bg-white`}>
+                      <div key={med.id} className={`bg-white/80 dark:bg-white/5 ${isPending ? 'border-2 border-primary/20 shadow-sm' : 'border border-white dark:border-white/10'} p-3 rounded-lg flex items-center gap-4 transition-all hover:bg-white dark:hover:bg-white/10`}>
                         <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center shrink-0">
                           <span className="material-symbols-outlined text-primary" style={med.type === 'pill' ? { fontVariationSettings: "'FILL' 1" } : {}}>
                             {med.type === 'pill' ? 'pill' : 'medication'}
                           </span>
                         </div>
                         <div className="flex-grow">
-                          <span className="font-bold block text-sm">{med.name}</span>
-                          <span className="text-xs text-outline">{med.dosage} • {med.form}</span>
+                          <span className="font-bold block text-sm text-on-surface">{med.name}</span>
+                          <span className="text-xs text-on-surface-variant">{med.dosage} • {med.form}</span>
                         </div>
                       </div>
                     ))}
@@ -170,7 +170,7 @@ const PerspectiveEngine = () => {
                   <th className="p-3 font-label-caps text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-outline-variant/20 bg-white/50">
+              <tbody className="divide-y divide-outline-variant/20 bg-white/50 dark:bg-white/5">
                 {schedules.flatMap(s => s.medications).map((med, i) => (
                   <tr key={med.id || i}>
                     <td className="p-3 font-bold text-on-surface">{med.name} {med.dosage}</td>

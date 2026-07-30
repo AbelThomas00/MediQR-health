@@ -153,8 +153,8 @@ const RxDecodeEngine = () => {
         <>
           {/* Drag & Drop Zone */}
           <div 
-            className={`border-2 border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center transition-all cursor-pointer min-h-[160px]
-              ${isDragging ? 'bg-primary/20 border-primary scale-[1.02]' : 'bg-primary/5 border-primary/30 hover:bg-primary/10 hover:border-primary/50'}`}
+            className={`border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center text-center transition-all duration-300 cursor-pointer min-h-[180px]
+              ${isDragging ? 'bg-primary/20 border-primary scale-[1.02] shadow-[0_0_20px_rgba(0,89,187,0.2)]' : 'bg-gradient-to-b from-primary/5 to-transparent border-primary/30 hover:bg-primary/10 hover:border-primary/60 hover:shadow-lg'}`}
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
@@ -253,7 +253,7 @@ const RxDecodeEngine = () => {
             )}
 
             {editableMeds.map((med, index) => (
-              <div key={med.id} className="bg-white/40 dark:bg-white/5 border border-white/60 dark:border-white/10 p-4 rounded-xl shadow-sm flex flex-col gap-4">
+              <div key={med.id} className="bg-white/60 dark:bg-white/5 border border-white/80 dark:border-white/10 p-5 rounded-2xl shadow-sm hover:shadow-md flex flex-col gap-4 transition-all duration-300">
                 
                 <div className="flex justify-between items-start">
                    <div className="flex items-center gap-2">
@@ -279,8 +279,8 @@ const RxDecodeEngine = () => {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="col-span-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="sm:col-span-2">
                     <label className="text-[10px] text-outline font-bold uppercase tracking-wider block mb-1">Medicine Name</label>
                     <input 
                       type="text"

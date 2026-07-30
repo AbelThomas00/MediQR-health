@@ -7,6 +7,7 @@ const Header = () => {
   const { mode, setMode, isDarkMode, toggleDarkMode, patientData } = useMediQR();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showNotifMenu, setShowNotifMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   
   // Modals state
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -36,11 +37,11 @@ const Header = () => {
   }, []);
 
   const getNavLinkClass = ({ isActive }) => {
-    const base = "text-body-md flex flex-col items-center group relative rounded-lg transition-colors px-3 py-1";
+    const base = "text-body-md relative group rounded-lg transition-all duration-300 px-3 py-2 lg:py-1.5 font-bold flex items-center";
     if (isActive) {
-      return `${base} text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 font-bold`;
+      return `${base} text-primary dark:text-primary-fixed-dim bg-primary/10 lg:bg-transparent lg:after:content-[''] lg:after:absolute lg:after:-bottom-1 lg:after:left-1/2 lg:after:-translate-x-1/2 lg:after:w-3/4 lg:after:h-[3px] lg:after:bg-primary lg:after:rounded-full lg:after:transition-all`;
     }
-    return `${base} text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/10 dark:hover:bg-primary-fixed-dim/10`;
+    return `${base} text-on-surface-variant dark:text-outline-variant hover:text-primary hover:bg-primary/5 dark:hover:bg-primary-fixed-dim/10 lg:after:content-[''] lg:after:absolute lg:after:-bottom-1 lg:after:left-1/2 lg:after:-translate-x-1/2 lg:after:w-0 lg:after:h-[3px] lg:after:bg-primary/50 lg:after:rounded-full lg:after:transition-all lg:after:duration-300 lg:hover:after:w-1/2`;
   };
 
   const handleSignOut = () => {
@@ -71,7 +72,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md text-primary dark:text-primary-fixed-dim docked full-width top-0 border-b border-outline-variant/20 shadow-sm flex justify-between items-center w-full px-container-padding-desktop max-w-full sticky z-50 py-3 transition-colors duration-200" id="top-nav">
+    <header className="bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl text-primary dark:text-primary-fixed-dim docked full-width top-0 border-b border-white/20 dark:border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.05)] flex justify-between items-center w-full px-container-padding-desktop max-w-full sticky z-50 py-3 transition-all duration-300" id="top-nav">
       {/* Logo & Brand */}
       <div className="flex items-center gap-4">
         <img alt="MediQR Health Logo" className="h-10 w-10 object-contain rounded-full bg-white p-1 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYG1mAR19StrCcofmMz0MEOcW8UJ85pcVPx4wtyIgiIKAEbT6CQ0kZGecpmtuuF8P5ikmjugUadXESsbF2J1biphDd9UP4pLhsw7YRTbWtMs6ipyIVfRSbrb7JSnuIUoohzg1UOJFMtdhvv8ksVl7DNzJE5rYx0_cnFC-1KOk7q3xKyrUJSJgNdVLFh3Z5D8fN0cJdn1zp3FYjj4rDbDRdyi1D-hFJzC2XKbYLeLG_rkTai17E_nc9JA"/>
@@ -208,10 +209,52 @@ const Header = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button className="lg:hidden text-on-surface-variant hover:text-primary p-2">
-          <span className="material-symbols-outlined">menu</span>
+        <button 
+          className="lg:hidden text-on-surface-variant hover:text-primary p-2 transition-colors rounded-full hover:bg-primary/10 z-50 relative"
+          onClick={() => setShowMobileMenu(!showMobileMenu)}
+        >
+          <span className="material-symbols-outlined">{showMobileMenu ? 'close' : 'menu'}</span>
         </button>
       </div>
+
+      {/* Mobile Menu Overlay & Drawer */}
+      {showMobileMenu && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-surface/95 dark:bg-surface-dim/95 backdrop-blur-xl border-b border-outline-variant/20 shadow-lg animate-in slide-in-from-top-2 fade-in duration-200 z-40">
+          <nav className="flex flex-col p-4 gap-2">
+            <NavLink to="/dashboard" className={getNavLinkClass} onClick={() => setShowMobileMenu(false)}>
+              <span className="material-symbols-outlined mr-3">dashboard</span> Dashboard
+            </NavLink>
+            <NavLink to="/passport" className={getNavLinkClass} onClick={() => setShowMobileMenu(false)}>
+              <span className="material-symbols-outlined mr-3">qr_code_scanner</span> MediQR Passport
+            </NavLink>
+            <NavLink to="/rxdecode" className={getNavLinkClass} onClick={() => setShowMobileMenu(false)}>
+              <span className="material-symbols-outlined mr-3">document_scanner</span> RxDecode
+            </NavLink>
+            <NavLink to="/schedules" className={getNavLinkClass} onClick={() => setShowMobileMenu(false)}>
+              <span className="material-symbols-outlined mr-3">calendar_month</span> Schedules
+            </NavLink>
+            <NavLink to="/diet" className={getNavLinkClass} onClick={() => setShowMobileMenu(false)}>
+              <span className="material-symbols-outlined mr-3">restaurant</span> Diet Plans
+            </NavLink>
+            
+            <div className="h-px bg-outline-variant/20 my-2"></div>
+            
+            <div className="flex items-center justify-between px-3 py-2">
+              <span className="text-body-md font-bold text-on-surface-variant">Switch Mode</span>
+              <button 
+                className="flex items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-lg font-bold text-sm hover:bg-primary/20 transition-colors"
+                onClick={() => {
+                  setMode(mode === 'patient' ? 'pharmacist' : 'patient');
+                  setShowMobileMenu(false);
+                }}
+              >
+                <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>person</span>
+                {mode === 'patient' ? 'Patient' : 'Pharmacy'}
+              </button>
+            </div>
+          </nav>
+        </div>
+      )}
 
       {/* Settings Modal */}
       <Modal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} title="Account Settings">

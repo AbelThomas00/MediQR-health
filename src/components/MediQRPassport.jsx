@@ -131,7 +131,7 @@ const MediQRPassport = () => {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
         {/* Profile Info */}
         <div className="md:col-span-3 flex flex-col gap-4">
-          <div className="bg-white/40 p-4 rounded-lg border border-white/60">
+          <div className="bg-gradient-to-br from-white/60 to-white/30 dark:from-white/10 dark:to-white/5 p-5 rounded-xl border border-white/50 dark:border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all duration-300 hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-headline-md shrink-0">
                 {patientData.initials}
@@ -159,12 +159,12 @@ const MediQRPassport = () => {
             </div>
           </div>
           
-          <div className="flex items-center justify-between bg-surface-container-highest/50 p-3 rounded-lg border border-white/50">
-            <div>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-surface-container-highest/50 p-3 rounded-lg border border-white/50 w-full overflow-hidden">
+            <div className="min-w-0 flex-1">
               <span className="text-xs text-outline block font-label-caps">Global Access Key</span>
-              <span className="font-mono font-bold text-primary tracking-widest">{patientData.id}</span>
+              <span className="font-mono font-bold text-primary tracking-widest break-all sm:truncate block">{patientData.id}</span>
             </div>
-            <button className="text-primary hover:bg-primary/10 p-1.5 rounded-md transition-colors" title="Copy Key" onClick={() => navigator.clipboard.writeText(patientData.id)}>
+            <button className="text-primary hover:bg-primary/10 p-1.5 rounded-md transition-colors shrink-0 self-start sm:self-auto" title="Copy Key" onClick={() => navigator.clipboard.writeText(patientData.id)}>
               <span className="material-symbols-outlined text-sm">content_copy</span>
             </button>
           </div>
@@ -172,7 +172,7 @@ const MediQRPassport = () => {
 
         {/* QR Code Area */}
         <div className="md:col-span-2 flex flex-col items-center justify-center gap-4 w-full">
-          <div className="bg-white p-3 rounded-xl shadow-sm border border-outline-variant/30 relative flex items-center justify-center">
+          <div className="bg-white p-4 rounded-2xl shadow-[0_0_40px_rgba(0,89,187,0.15)] border border-white/80 relative flex items-center justify-center group-hover:shadow-[0_0_50px_rgba(0,89,187,0.25)] transition-all duration-500">
             <QRCodeSVG 
               value={patientData.id} 
               size={128} 
@@ -206,8 +206,8 @@ const MediQRPassport = () => {
             </div>
 
             {mode === 'pharmacist' && (
-              <form onSubmit={handleManualSubmit} className="flex flex-col gap-1 w-full mt-2">
-                <div className="flex gap-2">
+              <form onSubmit={handleManualSubmit} className="flex flex-col gap-2 w-full mt-2">
+                <div className="flex flex-col sm:flex-row gap-2 w-full">
                   <input 
                     type="text" 
                     placeholder="Enter Access Key..."
@@ -259,7 +259,7 @@ const MediQRPassport = () => {
             />
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs text-outline font-label-caps mb-1 block">Date of Birth</label>
               <input 
@@ -282,7 +282,7 @@ const MediQRPassport = () => {
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-xs text-outline font-label-caps mb-1 block">Blood Type</label>
               <input 
